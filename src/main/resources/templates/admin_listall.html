@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin list all</title>
+</head>
+<body>
+<table style="width: auto">
+    <tr><td>Id:</td><td>Username:</td><td>Password:</td><td>Disable:</td></tr>
+    <tr th:each="user : ${allusers}">
+        <td th:text="${user.user_id}"></td>
+        <td th:text="${user.user_name}"></td>
+        <td th:text="${user.user_password}"></td>
+        <form action="/disable" method="post"><td th:href="${user.user_name}"></td> </form>
+        <br/>
+    </tr>
+</table>
+</body>
+</html>

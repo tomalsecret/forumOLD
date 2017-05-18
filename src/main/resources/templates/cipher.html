@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+
+<form th:action="@{/user/siema}" method="post">
+<input type="text" th:name="string_to_cypher"/><br/>
+Klucz do zaszyfrowania(liczba):<br/>
+    <input type="text" th:name="key"/><br/>
+<button type="submit">KLIKNIJ TUTAJ! :)</button>
+</form>
+Zaszyfrowany tekst:
+<span th:text="${cypher}"/>
+
+
+</body>
+</html>

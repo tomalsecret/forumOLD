@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <div th:fragment="header-css">
+        <!-- this is header-css -->
+        <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+        <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    </div>
+
+</head>
+<body>
+
+<div th:fragment="header">
+    <!-- this is header -->
+    <style>
+        body {
+            background-color: #f8ffa5;
+            color: black
+        }
+
+        table {
+            border: 1px solid black;
+            word-break: break-all;
+            vertical-align: top;
+            text-align: center;
+            padding: 5px;
+            background-color: #e8f1d1
+        }
+        tr, td {
+            border: 1px solid black;
+            word-break:break-all;
+            vertical-align:top;
+            text-align: center;
+            padding: 5px;
+            border-bottom: 1px solid #aeaeae;
+            border-top: 0px;
+            border-right: 0px;
+            border-left: 0px;
+            background-color: #fff7c3;
+            color: black
+
+        }
+
+        td.a {
+            text-align: left;
+            vertical-align: top;
+            padding: 5px;
+            position: relative;
+        }
+    </style>
+    <tr>
+        <td sec:authorize="isAnonymous()">
+            <a href="/user/login" th:href="@{/user/login}" class="btn-login">Zaloguj</a>
+        </td>
+        <td sec:authorize="isAnonymous()">
+            <a href="/user/register" th:href="@{/user/register}" class="btn-login">Zarejestruj</a>
+        </td>
+        <td><a th:href="@{/}">Strona główna</a></td>
+        <td><a th:href="@{/user/listall}">Pokaż wszystkich użytkowników</a></td>
+
+        <td><a th:href="@{/forum/}">Forum</a></td>
+        <td sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" style="display: inline;" method="post"><input type="submit" value="Wyloguj"/></form>
+        </td>
+        <br/> <td class="active" sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/user/admin}">Admin panel</a></td>
+
+    </tr><br/><br/><br/>
+</div>
+
+</body>
+</html>

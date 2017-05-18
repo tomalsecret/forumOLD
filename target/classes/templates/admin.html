@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+<h1 style="color:blue"> Witaj! To jest strona admina!</h1>
+
+<br/>
+
+<form th:action="@{/user/admin/disable}" method="GET">
+    <input type="submit" value="Disable user"/>
+</form>
+
+</body>
+</html>

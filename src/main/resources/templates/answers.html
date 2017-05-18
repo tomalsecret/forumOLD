@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Odpowiedzi</title>
+
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+
+<div th:each="postcount : ${post}">
+    <table style="width: 1000px; border-bottom: 0px">
+        <tr>
+            <td>Autor:</td>
+
+            <td>Kategoria:</td>
+            <td>Data:</td>
+            <td style="width: 150px">Ilość plusów: <span th:text="${postcount.ilosc_plusow}"></span></td>
+        </tr>
+        <tr>
+            <td style="width: 100px" th:text="${postcount.user_name}"></td>
+
+
+            <td style="width: 100px" th:text="${postcount.category}"></td>
+            <td style="width: 150px" th:text="${postcount.date}"></td>
+            <td style="width: 100px" max-height="100px">
+                <center>
+                    <span sec:authorize="isAnonymous()">Zaloguj się, by głosować.</span>
+                    <form sec:authorize="isAuthenticated()" action="/forum/like" method="POST">
+                    <span th:switch="${if_liked}">
+
+                        <input type="hidden" th:name="id" th:value="${postcount.public_message_id}"/>
+                        <input type="hidden" th:name="if_liked" th:value="${if_liked}"/>
+
+                        <span th:switch="${if_liked}">
+
+                            <input th:case="false" type="submit" value="Polub to!"/>
+                            <input th:case="true" type="submit" value="Usuń polubienie!"/>
+
+                    </span>
+                    </span>
+                    </form>
+                </center>
+            </td>
+
+        </tr>
+    </table>
+    <table style="width: 1000px; border-top: 0px; border-bottom: 0px">
+        <tr>
+            <th style="width: 50px; text-align: left">Temat:</th>
+        </tr>
+        <tr>
+            <td class="a" th:text="${postcount.topic}"></td>
+        </tr>
+    </table>
+    <table style="width: 1000px; border-top: 0px">
+        <tr>
+            <th style="width: 100px; text-align: left">Treść posta:</th>
+        </tr>
+        <tr>
+            <td class="a" th:text="${postcount.content}"></td>
+
+
+        </tr>
+    </table>
+    <br/>
+</div>
+<br/><br/>
+
+
+<span sec:authorize="isAuthenticated()">Odpowiedz na ten post:</span>
+<span sec:authorize="isAnonymous()">Zaloguj się aby odpowiedzieć na ten post.</span>
+<br/><br/>
+<div sec:authorize="isAuthenticated()">
+    <form method="POST">
+        <textarea rows="7" cols="75" name="content"/>
+        <div><input type="submit" value="Wyslij odpowiedz"/></div>
+    </form>
+</div>
+
+
+<br/><br/>
+Odpowiedzi:
+<div th:each="answer : ${answers}">
+    <table style="width: 1000px">
+        <tr>
+            <th style="width: 100px; text-align: left">Autor: <span th:text="${answer.user_name}"></span></th>
+        </tr>
+        <tr>
+            <th style="text-align: left">Data: <span style="width: 150px" th:text="${answer.date}"></span></th>
+
+        </tr>
+        <tr>
+            <th style="text-align: left">Treść odpowiedzi:</th>
+
+        </tr>
+        <tr>
+
+            <td class="a" th:text="${answer.content}"></td>
+
+
+        </tr>
+        <br/>
+    </table>
+
+
+</div>
+
+
+</body>
+</html>
