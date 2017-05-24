@@ -11,7 +11,7 @@
 <body>
 <div th:replace="fragments/header :: header"/>
 <table style="width: auto">
-    <tr><td>Id:</td><td>Nazwa użytkownika:</td><td>Haslo użytkownika:</td><td sec:authorize="hasAuthority('ROLE_ADMIN')">Zablokuj użytkownika:</td></tr>
+    <tr><td>Id:</td><td>Nazwa użytkownika:</td><td>Haslo użytkownika:</td><td sec:authorize="hasAuthority('ROLE_ADMIN')">Zablokuj użytkownika:</td><td>Prywatna wiadomość:</td></tr>
     <tr th:each="user : ${allusers}">
         <td th:text="${user.user_id}"></td>
         <td th:text="${user.user_name}"></td>
@@ -22,6 +22,11 @@
                 <center><button type="submit">Zablokuj</button></center>
             </td></form>
         </div>
+        <td><form th:action="@{/private_messages/send}" method="get">
+            <input type="hidden" name="id" th:value="${user.user_id}"/>
+            <input type="hidden" name="name" th:value="${user.user_name}"/>
+            <button type="submit">Wyślij wiadomość</button>
+        </form></td>
 
     </tr>
 </table>

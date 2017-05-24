@@ -42,8 +42,7 @@ public class UserController {
         String redirectUrlSuccess = "/user/login";
 
 
-
-        Pattern p = Pattern.compile("[a-zA-z0-9]*");
+        Pattern p = Pattern.compile("[a-zA-Z0-9]*");
         if (!p.matcher(username).matches()) return "redirect:" + redirectUrlError;
         if (!p.matcher(pass).matches()) return "redirect:" + redirectUrlError;
 
@@ -147,4 +146,38 @@ public class UserController {
         model.addAttribute("decypher", deciphertext);
         return "decypher";
     }
+
+    @RequestMapping(value = "/my_profile", method = RequestMethod.GET)
+    public String myProfile(Model model) {
+
+        String user_name = userService.getUserName();
+
+        model.addAttribute("user_name", user_name);
+
+        return "my_profile";
+
+
+    }
+
+    @RequestMapping(value = "/user_profile/{id}", method = RequestMethod.GET)
+    public String userProfile(@PathVariable("id") int id, Model model) {
+
+        String user_name = userService.getUserName();
+
+        String target_name = userService.getUserById(id);
+
+        model.addAttribute("user_name", user_name);
+
+        model.addAttribute("target_id", id);
+
+        model.addAttribute("target_name", target_name);
+
+        return "user_profile";
+
+
+    }
+
+
+
+
 }

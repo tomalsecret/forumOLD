@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Wysłane wiadomości</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+<form th:action="@{/private_messages/}" method="get">
+
+    <button type="submit">Wróć do odebranych wiadomości</button>
+</form>
+
+<br/>Twoje wysłane wiadomości:<br/>
+<div th:each="message : ${sentMessages}">
+    <table style="width: 1000px; border-bottom: 0px">
+        <tr>
+            <td>Odbiorca:</td>
+            <td>Data:</td>
+            <td>Przeczytaj całą wiadomość:</td>
+        </tr>
+        <tr>
+
+            <td style="width: 100px" th:text="${message.receiver_name}"></td>
+
+
+            <td style="width: 150px" th:text="${message.date}"></td>
+
+
+            <td style="width: 100px">
+                <center>
+                    <form th:action="${message.private_message_id}" method="get">
+
+                        <input type="submit" value="Wejdź"/>
+
+                    </form>
+                </center>
+            </td>
+            <br/>
+        </tr>
+    </table>
+    <table style="width: 1000px; border-top: 0px; border-bottom: 0px">
+        <tr>
+            <th style="width: 50px; text-align: left">Temat:</th>
+        </tr>
+        <tr>
+            <td class="a" th:text="${#strings.abbreviate(message.topic,100)}"></td>
+        </tr>
+    </table>
+    <table style="width: 1000px; border-top: 0px">
+        <tr>
+        <tr>
+            <th style="width: 50px; text-align: left">Treść wiadomości:</th>
+        </tr>
+        <td class="a" th:text="${#strings.abbreviate(message.content,500)}"></td>
+
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

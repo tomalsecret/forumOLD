@@ -51,4 +51,15 @@ public class UserDao {
         String user_name = auth.getName();
         return user_name;
     }
+
+    public String getUserById(int id) {
+        String sql = "SELECT user_name FROM user WHERE user_id=?";
+        List<User> username = jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class), id);
+        List<User> username1 = jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class), id);
+
+        String name = username.get(0).getUser_name().toString();
+        String name1 = username1.get(0).getUser_name().toString();
+
+        return name1;
+    }
 }

@@ -31,4 +31,10 @@ public class UserService {
     public String getUserName(){
         return this.userDao.getUserName();
     }
+
+    public String getUserById(int id) {
+        return this.userDao.getUserById(id);
+    }
+
+
 }

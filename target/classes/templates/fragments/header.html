@@ -62,8 +62,12 @@
 
         <td><a th:href="@{/forum/}">Forum</a></td>
         <td sec:authorize="isAuthenticated()">
+            <a href="/user/my_profile" th:href="@{/user/my_profile}" class="btn-login">Mój profil</a>
+        </td>
+        <td sec:authorize="isAuthenticated()">
             <form th:action="@{/logout}" style="display: inline;" method="post"><input type="submit" value="Wyloguj"/></form>
         </td>
+
         <br/> <td class="active" sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/user/admin}">Admin panel</a></td>
 
     </tr><br/><br/><br/>
