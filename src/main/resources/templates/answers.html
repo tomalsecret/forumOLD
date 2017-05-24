@@ -20,7 +20,10 @@
             <td style="width: 150px">Ilość plusów: <span th:text="${postcount.ilosc_plusow}"></span></td>
         </tr>
         <tr>
-            <td style="width: 100px" th:text="${postcount.user_name}"></td>
+            <td style="width: 100px">
+                <a th:href="@{'/user/user_profile/'+${postcount.user_name}}" th:text="${postcount.user_name}"/>
+
+            </td>
 
 
             <td style="width: 100px" th:text="${postcount.category}"></td>
@@ -65,8 +68,13 @@
 
         </tr>
     </table>
+    <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{'/forum/delete/post'}" method="post">
+        <input type="hidden" th:value="${postcount.public_message_id}" th:name="id"/>
+        <button type="submit">Usuń</button>
+    </form>
     <br/>
 </div>
+
 <br/><br/>
 
 
@@ -86,7 +94,9 @@ Odpowiedzi:
 <div th:each="answer : ${answers}">
     <table style="width: 1000px">
         <tr>
-            <th style="width: 100px; text-align: left">Autor: <span th:text="${answer.user_name}"></span></th>
+            <th style="width: 100px; text-align: left">Autor: <span>
+                            <a th:href="@{'/user/user_profile/'+${answer.user_name}}" th:text="${answer.user_name}"/>
+            </span></th>
         </tr>
         <tr>
             <th style="text-align: left">Data: <span style="width: 150px" th:text="${answer.date}"></span></th>
@@ -104,7 +114,11 @@ Odpowiedzi:
         </tr>
         <br/>
     </table>
-
+    <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{'/forum/delete/answer'}" method="post">
+        <input type="hidden" th:value="${answer.public_answer_id}" th:name="answer_id"/>
+        <input type="hidden" th:value="${answer.public_message_id}" th:name="public_message_id"/>
+        <button type="submit">Usuń</button>
+    </form>
 
 </div>
 

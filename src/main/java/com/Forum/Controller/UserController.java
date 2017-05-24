@@ -42,6 +42,7 @@ public class UserController {
         String redirectUrlSuccess = "/user/login";
 
 
+
         Pattern p = Pattern.compile("[a-zA-Z0-9]*");
         if (!p.matcher(username).matches()) return "redirect:" + redirectUrlError;
         if (!p.matcher(pass).matches()) return "redirect:" + redirectUrlError;
@@ -75,77 +76,23 @@ public class UserController {
         return "disable_user";
     }
 
+    @RequestMapping(value = "/admin/enable", method = RequestMethod.GET)
+    public String enableUser() {
+        return "enable_user";
+    }
+
     @RequestMapping(value = "/admin/disable", method = RequestMethod.POST)
     public String disableUserByName(@RequestParam(value = "user_name", defaultValue = "") String user_name) {
         if (!(user_name.equals("admin"))) userService.disableUserByName(user_name);
         return "admin";
     }
 
-    @RequestMapping(value = "/siema", method = RequestMethod.GET)
-    public String cypher() {
-
-
-        return "cipher";
-
-
+    @RequestMapping(value = "/admin/enable", method = RequestMethod.POST)
+    public String enableUserByName(@RequestParam(value = "user_name", defaultValue = "") String user_name) {
+        if (!(user_name.equals("admin"))) userService.enableUserByName(user_name);
+        return "admin";
     }
 
-    @RequestMapping(value = "/siemano", method = RequestMethod.GET)
-    public String decypher() {
-
-
-        return "decypher";
-
-
-    }
-
-
-    @RequestMapping(value = "/siema", method = RequestMethod.POST)
-    public String cypherPOST(@RequestParam(value = "string_to_cypher", defaultValue = " ") String plaintext,
-                             @RequestParam(value = "key", defaultValue = "0") String keyString, Model model) {
-
-        int key;
-        try {
-            key = Integer.parseInt(keyString);
-        } catch (Exception e) {
-            return "cipher";
-        }
-        StringBuilder ciphertext = new StringBuilder(plaintext);
-        final int DELTA = key;
-        for (int i = 0; i < ciphertext.length(); i++) {
-            char c = ciphertext.charAt(i);
-            ciphertext.setCharAt(i, (char) (c + DELTA));
-        }
-
-
-        model.addAttribute("cypher", ciphertext);
-        return "cipher";
-
-    }
-
-    @RequestMapping(value = "/siemano", method = RequestMethod.POST)
-    public String decypherPOST(@RequestParam(value = "string_to_decypher", defaultValue = " ") String cypheredtext,
-                               @RequestParam(value = "key", defaultValue = "0") String keyString, Model model) {
-
-        int key;
-        try {
-            key = Integer.parseInt(keyString);
-        } catch (Exception e) {
-            return "cipher";
-        }
-        StringBuilder deciphertext = new StringBuilder(cypheredtext);
-        final int DELTA = key;
-
-        for (int i = 0; i < deciphertext.length(); i++)
-
-        {
-            char c = deciphertext.charAt(i);
-            deciphertext.setCharAt(i, (char) (c - DELTA));
-        }
-
-        model.addAttribute("decypher", deciphertext);
-        return "decypher";
-    }
 
     @RequestMapping(value = "/my_profile", method = RequestMethod.GET)
     public String myProfile(Model model) {
@@ -159,21 +106,17 @@ public class UserController {
 
     }
 
-    @RequestMapping(value = "/user_profile/{id}", method = RequestMethod.GET)
-    public String userProfile(@PathVariable("id") int id, Model model) {
+    @RequestMapping(value = "/user_profile/{user_name}", method = RequestMethod.GET)
+    public String userProfile(@PathVariable("user_name") String target_name, Model model) {
 
         String user_name = userService.getUserName();
 
-        String target_name = userService.getUserById(id);
+        if (userService.checkIfUserExists(target_name)) {
 
-        model.addAttribute("user_name", user_name);
-
-        model.addAttribute("target_id", id);
-
-        model.addAttribute("target_name", target_name);
-
-        return "user_profile";
-
+            model.addAttribute("user_name", user_name);
+            model.addAttribute("target_name", target_name);
+            return "user_profile";
+        } else return "error";
 
     }
 

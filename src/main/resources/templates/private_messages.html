@@ -23,7 +23,10 @@
             <td>Przeczytaj całą wiadomość:</td>
         </tr>
         <tr>
-            <td style="width: 100px" th:text="${message.sender_name}"></td>
+
+            <td style="width: 100px">
+                <a th:href="@{'/user/user_profile/'+${message.sender_name}}" th:text="${message.sender_name}"/>
+            </td>
 
 
             <td style="width: 150px" th:text="${message.date}"></td>

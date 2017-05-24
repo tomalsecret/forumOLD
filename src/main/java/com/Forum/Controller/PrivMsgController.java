@@ -52,26 +52,26 @@ public class PrivMsgController {
     }
 
     @RequestMapping(value = "/send", method = RequestMethod.GET)
-    public String sendPrivateMessage(@RequestParam(value = "id", defaultValue = "0") int id, Model model) {
+    public String sendPrivateMessage(@RequestParam(value = "user", defaultValue = " ") String target_name, Model model) {
 
         String user_name = userService.getUserName();
 
-        model.addAttribute("user_id", id);
-        model.addAttribute("user_name", user_name);
+        if (userService.checkIfUserExists(target_name)) {
+            model.addAttribute("target_name", target_name);
+            model.addAttribute("user_name", user_name);
 
-        return "send_private_message";
+            return "send_private_message";
+        } else return "error";
     }
 
     @RequestMapping(value = "/send", method = RequestMethod.POST)
     public String sendPrivateMessage(@RequestParam(value = "topic", defaultValue = " ") String topic,
                                      @RequestParam(value = "content", defaultValue = " ") String content,
-                                     @RequestParam(value = "id", defaultValue = "0") int id,
+                                     @RequestParam(value = "user", defaultValue = " ") String target_name,
                                      @RequestParam(value = "key", defaultValue = "0") String keyString) {
 
         String user_name = userService.getUserName();
 
-
-        String receiver_name = userService.getUserById(id);
 
 
         int key;
@@ -90,7 +90,7 @@ public class PrivMsgController {
 
         String tekst = ciphertext.toString();
 
-        privMsgService.sendPrivateMessage(user_name, receiver_name, topic, tekst);
+        privMsgService.sendPrivateMessage(user_name, target_name, topic, tekst);
 
 
         String redirectUrl = "/private_messages/";
@@ -155,5 +155,4 @@ public class PrivMsgController {
 
         return "private_message";
     }
-
 }

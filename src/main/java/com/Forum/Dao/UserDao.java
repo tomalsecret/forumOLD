@@ -2,6 +2,7 @@ package com.Forum.Dao;
 
 import com.Forum.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.Authentication;
@@ -46,6 +47,12 @@ public class UserDao {
 
     }
 
+    public void enableUserByName(String user_name) {
+        final String sql = "UPDATE user SET user_status=1 WHERE user_name = ?";
+        jdbcTemplate.update(sql, user_name);
+
+    }
+
     public String getUserName() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String user_name = auth.getName();
@@ -61,5 +68,16 @@ public class UserDao {
         String name1 = username1.get(0).getUser_name().toString();
 
         return name1;
+    }
+
+    public boolean checkIfUserExists(String target_name) {
+        try {
+            String sql = "SELECT * FROM user WHERE user_name=?";
+            Object check = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper(User.class), target_name);
+        } catch (EmptyResultDataAccessException e) {
+            return false;
+        }
+        return true;
+
     }
 }

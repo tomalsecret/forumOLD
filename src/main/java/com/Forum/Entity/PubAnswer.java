@@ -19,6 +19,11 @@ public class PubAnswer {
         this.content = content;
     }
 
+    PubAnswer() {
+    }
+
+    ;
+
 
     public int getPublic_answer_id() {
         return public_answer_id;

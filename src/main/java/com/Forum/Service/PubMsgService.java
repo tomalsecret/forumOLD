@@ -49,4 +49,17 @@ public class PubMsgService {
     public boolean showIfLiked(int id, String user_name) {
         return this.pubMsgDao.showIfLiked(id,user_name);
     }
+
+    public void deletePublicMessage(int id) {
+        this.pubMsgDao.deletePublicMessage(id);
+    }
+
+    public void deleteAnswer(int answer_id) {
+        this.pubMsgDao.deleteAnswer(answer_id);
+    }
+
+    public void deleteDislikedPosts() {
+
+        this.pubMsgDao.deleteDislikedPosts();
+    }
 }

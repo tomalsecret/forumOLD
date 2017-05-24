@@ -52,17 +52,17 @@
     </style>
     <tr>
         <td sec:authorize="isAnonymous()">
-            <a href="/user/login" th:href="@{/user/login}" class="btn-login">Zaloguj</a>
+            <a href="/user/login" th:href="@{/user/login}">Zaloguj</a>
         </td>
         <td sec:authorize="isAnonymous()">
-            <a href="/user/register" th:href="@{/user/register}" class="btn-login">Zarejestruj</a>
+            <a href="/user/register" th:href="@{/user/register}">Zarejestruj</a>
         </td>
         <td><a th:href="@{/}">Strona główna</a></td>
         <td><a th:href="@{/user/listall}">Pokaż wszystkich użytkowników</a></td>
 
         <td><a th:href="@{/forum/}">Forum</a></td>
         <td sec:authorize="isAuthenticated()">
-            <a href="/user/my_profile" th:href="@{/user/my_profile}" class="btn-login">Mój profil</a>
+            <a href="/user/my_profile" th:href="@{/user/my_profile}">Mój profil</a>
         </td>
         <td sec:authorize="isAuthenticated()">
             <form th:action="@{/logout}" style="display: inline;" method="post"><input type="submit" value="Wyloguj"/></form>

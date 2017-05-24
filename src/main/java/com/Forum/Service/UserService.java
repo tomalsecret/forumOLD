@@ -28,6 +28,10 @@ public class UserService {
         this.userDao.disableUserByName(user_name);
     }
 
+    public void enableUserByName(String user_name) {
+        this.userDao.enableUserByName(user_name);
+    }
+
     public String getUserName(){
         return this.userDao.getUserName();
     }
@@ -37,4 +41,7 @@ public class UserService {
     }
 
 
+    public boolean checkIfUserExists(String target_name) {
+        return this.userDao.checkIfUserExists(target_name);
+    }
 }

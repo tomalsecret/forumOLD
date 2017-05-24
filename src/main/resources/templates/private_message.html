@@ -15,7 +15,10 @@
             <td>Data:</td>
         </tr>
         <tr>
-            <td style="width: 100px" th:text="${msg.sender_name}"></td>
+            <td style="width: 100px">
+                <a th:href="@{'/user/user_profile/'+${msg.sender_name}}" th:text="${msg.sender_name}"/>
+
+            </td>
 
 
             <td style="width: 150px" th:text="${msg.date}"></td>

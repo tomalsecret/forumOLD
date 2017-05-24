@@ -3,6 +3,7 @@ package com.Forum.Controller;
 import com.Forum.Service.PubMsgService;
 import com.Forum.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -31,7 +32,7 @@ public class PubMsgController {
                             Model model) {
 
 
-        model.addAttribute("posts", pubMsgService.showPosts(sort_by,category));
+        model.addAttribute("posts", pubMsgService.showPosts(sort_by, category));
 
         return "forum";
     }
@@ -44,8 +45,7 @@ public class PubMsgController {
 
         String user_name = userService.getUserName();
 
-        model.addAttribute("if_liked",pubMsgService.showIfLiked(id,user_name));
-
+        model.addAttribute("if_liked", pubMsgService.showIfLiked(id, user_name));
 
 
         return "answers";
@@ -78,8 +78,6 @@ public class PubMsgController {
     }
 
 
-
-
     @RequestMapping(value = "/add_pub_msg/", method = RequestMethod.GET)
     public String add_pub_msg() {
 
@@ -94,10 +92,43 @@ public class PubMsgController {
 
         String user_name = userService.getUserName();
 
-        if (!(content.equals(" ")) && !(topic.equals(" ")))pubMsgService.addPubMsg(category, user_name, content, topic);
+        if (!(content.equals(" ")) && !(topic.equals(" ")))
+            pubMsgService.addPubMsg(category, user_name, content, topic);
 
         String redirectUrl = "/forum/";
         return "redirect:" + redirectUrl;
     }
+
+    @RequestMapping(value = "/delete/post", method = RequestMethod.POST)
+    public String deletePublicMessage(@RequestParam(value = "id", defaultValue = " ") int id) {
+
+        pubMsgService.deletePublicMessage(id);
+
+        String redirectUrl = "/forum/";
+        return "redirect:" + redirectUrl;
+
+
+    }
+
+    @RequestMapping(value = "/delete/answer", method = RequestMethod.POST)
+    public String deleteAnswer(@RequestParam(value = "answer_id", defaultValue = " ") int answer_id,
+                               @RequestParam(value = "public_message_id", defaultValue = " ") int public_message_id) {
+
+        pubMsgService.deleteAnswer(answer_id);
+
+        String redirectUrl = "/forum/";
+        return "redirect:" + redirectUrl + public_message_id;
+
+
+    }
+
+
+    @Scheduled(fixedRate = 60000)
+    public void deleteDislikedPosts() {
+
+        pubMsgService.deleteDislikedPosts();
+
+    }
+
 
 }

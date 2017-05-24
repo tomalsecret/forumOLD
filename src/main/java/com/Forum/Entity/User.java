@@ -18,7 +18,8 @@ public class User {
         this.user_role = user_role;
     }
 
-    public User(){};
+    public User() {
+    }
 
     public int getUser_id() {
         return user_id;

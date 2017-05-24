@@ -24,8 +24,6 @@ public class PrivMsg {
     PrivMsg() {
     }
 
-    ;
-
 
     public int getPrivate_message_id() {
         return private_message_id;
