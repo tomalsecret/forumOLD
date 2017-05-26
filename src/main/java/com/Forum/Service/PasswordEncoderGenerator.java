@@ -1,6 +1,5 @@
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Service
 public class PasswordEncoderGenerator {
 
   public static String generate(String pass) {
