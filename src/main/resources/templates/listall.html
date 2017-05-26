@@ -10,22 +10,20 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"/>
+<div class="container-fluid body-content"><br/>
 <table style="width: auto">
     <tr>
         <td>Id:</td>
         <td>Nazwa użytkownika:</td>
-        <td>Haslo użytkownika:</td>
 
         <td>Prywatna wiadomość:</td>
-        <td sec:authorize="hasAuthority('ROLE_ADMIN')">Zablokuj użytkownika:</td>
-        <td sec:authorize="hasAuthority('ROLE_ADMIN')">Odblokuj użytkownika:</td>
+        <td sec:authorize="hasAuthority('ROLE_ADMIN')">Zablokuj\Odblokuj użytkownika:</td>
     </tr>
     <tr th:each="user : ${allusers}">
         <td th:text="${user.user_id}"></td>
         <td>
             <a th:href="@{'/user/user_profile/'+${user.user_name}}" th:text="${user.user_name}"/>
         </td>
-        <td th:text="${user.user_password}"></td>
 
         <td>
             <form th:action="@{/private_messages/send/}" method="get">
@@ -33,7 +31,7 @@
                 <div><input type="submit" value="Wyślij wiadomość"/></div>
             </form>
         </td>
-        <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+        <div sec:authorize="hasAuthority('ROLE_ADMIN')" th:if="${user.user_status} eq '1'">
             <form action="/user/admin/disable" method="POST">
                 <td>
                     <input type="hidden" th:name="user_name" th:value="${user.user_name}"/>
@@ -43,7 +41,7 @@
                 </td>
             </form>
         </div>
-        <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+        <div sec:authorize="hasAuthority('ROLE_ADMIN')" th:if="${user.user_status} eq '0'">
             <form action="/user/admin/enable" method="POST">
                 <td>
                     <input type="hidden" th:name="user_name" th:value="${user.user_name}"/>
@@ -55,5 +53,6 @@
         </div>
     </tr>
 </table>
+</div>
 </body>
 </html>

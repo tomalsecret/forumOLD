@@ -8,30 +8,31 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"/>
+<div class="container-fluid body-content"><br/>
 
 
-<div th:each="postcount : ${post}">
-    <table style="width: 1000px; border-bottom: 0px">
-        <tr>
-            <td>Autor:</td>
+    <div th:each="postcount : ${post}">
+        <table style="width: 1000px; border-bottom: 0px">
+            <tr>
+                <td>Autor:</td>
 
-            <td>Kategoria:</td>
-            <td>Data:</td>
-            <td style="width: 150px">Ilość plusów: <span th:text="${postcount.ilosc_plusow}"></span></td>
-        </tr>
-        <tr>
-            <td style="width: 100px">
-                <a th:href="@{'/user/user_profile/'+${postcount.user_name}}" th:text="${postcount.user_name}"/>
+                <td>Kategoria:</td>
+                <td>Data:</td>
+                <td style="width: 150px">Ilość plusów: <span th:text="${postcount.ilosc_plusow}"></span></td>
+            </tr>
+            <tr>
+                <td style="width: 100px">
+                    <a th:href="@{'/user/user_profile/'+${postcount.user_name}}" th:text="${postcount.user_name}"/>
 
-            </td>
+                </td>
 
 
-            <td style="width: 100px" th:text="${postcount.category}"></td>
-            <td style="width: 150px" th:text="${postcount.date}"></td>
-            <td style="width: 100px" max-height="100px">
-                <center>
-                    <span sec:authorize="isAnonymous()">Zaloguj się, by głosować.</span>
-                    <form sec:authorize="isAuthenticated()" action="/forum/like" method="POST">
+                <td style="width: 100px" th:text="${postcount.category}"></td>
+                <td style="width: 150px" th:text="${postcount.date}"></td>
+                <td style="width: 100px" max-height="100px">
+                    <center>
+                        <span sec:authorize="isAnonymous()">Zaloguj się, by głosować.</span>
+                        <form sec:authorize="isAuthenticated()" action="/forum/like" method="POST">
                     <span th:switch="${if_liked}">
 
                         <input type="hidden" th:name="id" th:value="${postcount.public_message_id}"/>
@@ -44,41 +45,41 @@
 
                     </span>
                     </span>
-                    </form>
-                </center>
-            </td>
+                        </form>
+                    </center>
+                </td>
 
-        </tr>
-    </table>
-    <table style="width: 1000px; border-top: 0px; border-bottom: 0px">
-        <tr>
-            <th style="width: 50px; text-align: left">Temat:</th>
-        </tr>
-        <tr>
-            <td class="a" th:text="${postcount.topic}"></td>
-        </tr>
-    </table>
-    <table style="width: 1000px; border-top: 0px">
-        <tr>
-            <th style="width: 100px; text-align: left">Treść posta:</th>
-        </tr>
-        <tr>
-            <td class="a" th:text="${postcount.content}"></td>
+            </tr>
+        </table>
+        <table style="width: 1000px; border-top: 0px; border-bottom: 0px">
+            <tr>
+                <th style="width: 50px; text-align: left">Temat:</th>
+            </tr>
+            <tr>
+                <td class="a" th:text="${postcount.topic}"></td>
+            </tr>
+        </table>
+        <table style="width: 1000px; border-top: 0px">
+            <tr>
+                <th style="width: 100px; text-align: left">Treść posta:</th>
+            </tr>
+            <tr>
+                <td class="a" th:text="${postcount.content}"></td>
 
 
-        </tr>
-    </table>
-    <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{'/forum/delete/post'}" method="post">
-        <input type="hidden" th:value="${postcount.public_message_id}" th:name="id"/>
-        <button type="submit">Usuń</button>
-    </form>
-    <br/>
+            </tr>
+        </table>
+        <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{'/forum/delete/post'}" method="post">
+            <input type="hidden" th:value="${postcount.public_message_id}" th:name="id"/>
+            <button type="submit">Usuń</button>
+        </form>
+        <br/>
 </div>
 
-<br/><br/>
+    <br/><br/>
 
 
-<span sec:authorize="isAuthenticated()">Odpowiedz na ten post:</span>
+    <span sec:authorize="isAuthenticated()">Odpowiedz na ten post:</span>
 <span sec:authorize="isAnonymous()">Zaloguj się aby odpowiedzieć na ten post.</span>
 <br/><br/>
 <div sec:authorize="isAuthenticated()">
@@ -89,7 +90,7 @@
 </div>
 
 
-<br/><br/>
+    <br/><br/>
 Odpowiedzi:
 <div th:each="answer : ${answers}">
     <table style="width: 1000px">
@@ -121,7 +122,7 @@ Odpowiedzi:
     </form>
 
 </div>
-
-
+    <br/>
+</div>
 </body>
 </html>

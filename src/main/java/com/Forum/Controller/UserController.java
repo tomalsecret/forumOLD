@@ -84,13 +84,15 @@ public class UserController {
     @RequestMapping(value = "/admin/disable", method = RequestMethod.POST)
     public String disableUserByName(@RequestParam(value = "user_name", defaultValue = "") String user_name) {
         if (!(user_name.equals("admin"))) userService.disableUserByName(user_name);
-        return "admin";
+        String redirectUrl = "/user/listall/";
+        return "redirect:" + redirectUrl;
     }
 
     @RequestMapping(value = "/admin/enable", method = RequestMethod.POST)
     public String enableUserByName(@RequestParam(value = "user_name", defaultValue = "") String user_name) {
         if (!(user_name.equals("admin"))) userService.enableUserByName(user_name);
-        return "admin";
+        String redirectUrl = "/user/listall/";
+        return "redirect:" + redirectUrl;
     }
 
 

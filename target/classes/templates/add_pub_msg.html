@@ -6,6 +6,7 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"/>
+<div class="container-fluid body-content"><br/>
 
 <div sec:authorize="isAuthenticated()">
     <form method="POST">
@@ -26,6 +27,6 @@
 </div>
 
 
-
+</div>
 </body>
 </html>

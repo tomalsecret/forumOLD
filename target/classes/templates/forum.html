@@ -6,11 +6,13 @@
     <title>Strona główna forum</title>
 
 
+
+
 </head>
 <body>
 <div th:replace="fragments/header :: header"/>
 
-
+<div class="container-fluid body-content"><br/>
 <form sec:authorize="isAuthenticated()" th:action="@{/forum/add_pub_msg/}" style="display: inline;" method="GET">
     <input type="submit" value="Dodaj post"/>
 </form>
@@ -87,11 +89,13 @@
         </tr>
     </table>
 
-        <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{'/forum/delete/post'}" method="post">
-            <input type="hidden" th:value="${post.public_message_id}" th:name="id"/>
-            <button type="submit">Usuń</button>
-        </form>
+    <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{'/forum/delete/post'}" method="post">
+        <input type="hidden" th:value="${post.public_message_id}" th:name="id"/>
+        <button type="submit">Usuń</button>
+    </form>
 
+</div>
+    <br/>
 </div>
 </body>
 </html>

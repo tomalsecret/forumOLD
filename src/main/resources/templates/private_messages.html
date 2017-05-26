@@ -6,7 +6,7 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"/>
-
+<div class="container-fluid body-content"><br/>
 <form th:action="@{/private_messages/sent}" method="get">
 
     <button type="submit">Moje wysłane wiadomości</button>
@@ -64,6 +64,6 @@
 
 </div>
 
-
+</div>
 </body>
 </html>

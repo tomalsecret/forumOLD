@@ -6,13 +6,14 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"/>
+<div class="container-fluid body-content"><br/>
 
-<form th:action="@{/private_messages/}" method="get">
+    <form th:action="@{/private_messages/}" method="get">
 
-    <button type="submit">Wróć do odebranych wiadomości</button>
+        <button type="submit">Wróć do odebranych wiadomości</button>
 </form>
 
-<br/>Twoje wysłane wiadomości:<br/>
+    <br/>Twoje wysłane wiadomości:<br/>
 <div th:each="message : ${sentMessages}">
     <table style="width: 1000px; border-bottom: 0px">
         <tr>
@@ -62,6 +63,6 @@
     </table>
 
 </div>
-
+</div>
 </body>
 </html>

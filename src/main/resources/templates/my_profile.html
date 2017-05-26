@@ -6,13 +6,15 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"/>
+<div class="container-fluid body-content"><br/>
 
-<h1 th:inline="text">Witaj [[${#httpServletRequest.remoteUser}]] na swoim profilu!</h1>
+    <h1 th:inline="text">Witaj [[${#httpServletRequest.remoteUser}]] na swoim profilu!</h1>
 <br/>
 
-<form th:action="@{/private_messages/}" method="get">
+    <form th:action="@{/private_messages/}" method="get">
 
-    <button type="submit">Moje prywatne wiadomości</button>
+        <button type="submit">Moje prywatne wiadomości</button>
 </form>
+</div>
 </body>
 </html>

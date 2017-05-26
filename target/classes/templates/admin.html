@@ -6,6 +6,7 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"/>
+<div class="container-fluid body-content"><br/>
 
 <h1 style="color:blue"> Witaj! To jest strona admina!</h1>
 
@@ -13,10 +14,11 @@
 
 <form th:action="@{/user/admin/disable}" method="GET">
     <input type="submit" value="Wyłącz użytkownika"/>
-</form><br/>
+</form>
+<br/>
 <form th:action="@{/user/admin/enable}" method="GET">
     <input type="submit" value="Włącz użytkownika"/>
 </form>
-
+</div>
 </body>
 </html>

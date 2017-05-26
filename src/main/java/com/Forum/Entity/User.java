@@ -10,12 +10,14 @@ public class User {
     private String user_name;
     private String user_password;
     private String user_role;
+    private int user_status;
 
     public User(int user_id, String user_name, String user_password, String user_role) {
         this.user_id = user_id;
         this.user_name = user_name;
         this.user_password = user_password;
         this.user_role = user_role;
+        this.user_status = user_status;
     }
 
     public User() {
@@ -37,6 +39,10 @@ public class User {
         return user_role;
     }
 
+    public int getUser_status() {
+        return user_status;
+    }
+
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
@@ -51,5 +57,9 @@ public class User {
 
     public void setUser_role(String user_role) {
         this.user_role = user_role;
+    }
+
+    public void setUser_status(int user_status) {
+        this.user_status = user_status;
     }
 }

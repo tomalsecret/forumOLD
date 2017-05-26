@@ -17,7 +17,7 @@ public class UserService {
     UserDao userDao;
 
     public void addUser(String username, String password){
-        userDao.addUser(username,password);
+        userDao.addUser(username, PasswordEncoderGenerator.generate(password));
     }
 
     public Collection<User> getAllUsers() {

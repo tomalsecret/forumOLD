@@ -8,6 +8,7 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"/>
+<div class="container-fluid body-content"><br/>
 <div sec:authorize="isAuthenticated()">
     <h1 th:inline="text">Witaj [[${#httpServletRequest.remoteUser}]]!</h1>
 </div>
@@ -26,5 +27,6 @@
     <div> Password: <input type="password" name="password"/> </div><br/>
     <div><input type="submit" value="Log In"/>    </div>
 </form>
+</div>
 </body>
 </html>
