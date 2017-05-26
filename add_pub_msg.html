@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Dodaj post</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+<div sec:authorize="isAuthenticated()">
+    <form method="POST">
+        <input type="hidden" th:name="user_name" th:value="${#httpServletRequest.remoteUser}"/>
+        Temat:<br/><textarea rows="2" cols="40" name="topic"/><br/><br/>
+
+        Treść posta:<br/><textarea rows="15" cols="75" name="content"/><br/><br/>
+
+        <select name="category" size="1">
+            <option value="">Wybierz kategorie:</option>
+            <option value="Ogolny">Ogolny</option>
+            <option value="Inny">Inny</option>
+        </select><br/><br/>
+        <div><input type="submit" value="Wyslij post"/>    </div>
+
+    </form>
+
+</div>
+
+
+
+</body>
+</html>
