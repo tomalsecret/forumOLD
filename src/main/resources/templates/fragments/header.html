@@ -119,7 +119,7 @@
             <form th:action="@{/logout}" style="display: inline;" method="post"><input type="submit" value="Wyloguj"/></form>
         </td>
 
-        <span th:inline="text" style="position:absolute;  top: 5px;right:5px;">Zalogowany jako: [[${#httpServletRequest.remoteUser}]]</span>
+        <span sec:authorize="isAuthenticated()" th:inline="text" style="position:absolute;  top: 5px;right:5px;">Zalogowany jako: [[${#httpServletRequest.remoteUser}]]</span>
 
 
     </tr><br/><br/><br/>
