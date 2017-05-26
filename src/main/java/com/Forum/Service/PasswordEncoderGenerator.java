@@ -3,7 +3,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Service
 public class PasswordEncoderGenerator {
 
-  public static String void Generate(String pass) {
+  public static String generate(String pass) {
 
 	int i = 0;
 	String hashedPassword = "";
