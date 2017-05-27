@@ -81,30 +81,35 @@
             padding: 5px;
             position: relative;
         }
+          
+        #head .menu{
+            padding:5px;  
+            float:left; 
+        }
+          
+        #head .menu input {
+        margin-top: -4px;
+        }
+          
     </style>
-    <tr>
-        <td sec:authorize="isAnonymous()">
-            <a href="/user/login" th:href="@{/user/login}">Zaloguj</a> |
-        </td>
-        <td sec:authorize="isAnonymous()">
-            <a href="/user/register" th:href="@{/user/register}">Zarejestruj</a> |
-        </td>
-        <td><a th:href="@{/}">Strona główna</a> |</td>
-        <td><a th:href="@{/user/listall}">Pokaż wszystkich użytkowników</a> |</td>
-
-        <td><a th:href="@{/forum/}">Forum</a> |</td>
-        <td sec:authorize="isAuthenticated()">
-            <a href="/user/my_profile" th:href="@{/user/my_profile}">Mój profil</a> |
-        </td>
-        <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/user/admin}">Admin panel</a> |</td>
-        <td sec:authorize="isAuthenticated()">
-            <form th:action="@{/logout}" style="display: inline;" method="post"><input type="submit" value="Wyloguj"/></form>
-        </td>
-
-        <span sec:authorize="isAuthenticated()" th:inline="text" style="position:absolute;  top: 5px;right:5px;">Zalogowany jako: [[${#httpServletRequest.remoteUser}]]</span>
-
-
-    </tr>
+<div class="menu" sec:authorize="isAnonymous()">
+             <a href="/user/login" th:href="@{/user/login}">Zaloguj</a>
+       </div>
+         <div class="menu" sec:authorize="isAnonymous()">
+             <a href="/user/register" th:href="@{/user/register}">Zarejestruj</a>
+       </div>
+         <div class="menu"> <a th:href="@{/}">Strona główna</a></div>
+         <div class="menu"><a th:href="@{/user/listall}">Pokaż wszystkich użytkowników</a></div>
+ 
+         <div class="menu"><a th:href="@{/forum/}">Forum</a></div>
+         <div class="menu" sec:authorize="isAuthenticated()">
+             <a href="/user/my_profile" th:href="@{/user/my_profile}">Mój profil</a>
+         </div>
+         <div class="menu" sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/user/admin}">Admin panel</a></div>
+         <div class="menu" sec:authorize="isAuthenticated()">
+              <form th:action="@{/logout}" style="display: inline;" method="post"><input type="submit" value="Wyloguj"/></form>
+         </td>
+         </div>
     <br/><br/><br/>
 </div>
 
