@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Profil użytkownika</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+<div class="container-fluid body-content"><br/>
+
+    Nazwa użytkownika:
+<span th:text="${target_name}"></span><br/><br/>
+
+    <div sec:authorize="isAuthenticated()">
+        <form th:action="@{/private_messages/send/}" method="get">
+            <input type="hidden" th:name="user" th:value="${target_name}"/>
+            <div><input type="submit" value="Wyślij mu wiadomość!"/></div>
+        </form>
+</div>
+</div>
+</body>
+</html>
