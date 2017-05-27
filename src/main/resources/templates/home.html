@@ -8,10 +8,10 @@
 <div th:replace="fragments/header :: header"/>
 <div class="container-fluid body-content"><br/>
 <div sec:authorize="isAuthenticated()">
-<h1 th:inline="text">Hej [[${#httpServletRequest.remoteUser}]]! To jest strona główna!!</h1>
+    <h1 th:inline="text">Hej [[${#httpServletRequest.remoteUser}]]! To jest strona główna!</h1>
 </div>
 <div sec:authorize="isAnonymous()">
-<h1 style="color: green">Hej gościu! To jest strona główna!!</h1>
+    <h1 style="color: green">Hej gościu! To jest strona główna!</h1>
 </div>
 </div>
 </body>

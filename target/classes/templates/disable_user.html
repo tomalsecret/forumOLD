@@ -8,12 +8,12 @@
 <div th:replace="fragments/header :: header"/>
 <div class="container-fluid body-content"><br/>
 
-<div sec:authorize="hasRole('ROLE_ADMIN')">
-    <form th:action="@{/user/admin/disable}" method="POST">
-        <div><label> User Name : <input type="text" name="user_name"/> </label></div>
-        <div><input type="submit" value="Zablokuj go!"/>    </div>
-    </form>
-</div>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <form th:action="@{/user/admin/disable}" method="POST">
+            <div><label> User Name : <input type="text" name="user_name"/> </label></div>
+            <div><input type="submit" value="Zablokuj go!"/></div>
+        </form>
+    </div>
 </div>
 </body>
 </html>

@@ -13,12 +13,13 @@
 
     <div th:each="postcount : ${post}">
         <table style="width: 1000px; border-bottom: 0px">
-            <tr>
+            <tr style="font-weight:bold">
                 <td>Autor:</td>
 
                 <td>Kategoria:</td>
                 <td>Data:</td>
-                <td style="width: 150px">Ilość plusów: <span th:text="${postcount.ilosc_plusow}"></span></td>
+                <td style="width: 150px">Ilość plusów: <span style="font-weight:normal"
+                                                             th:text="${postcount.ilosc_plusow}"></span></td>
             </tr>
             <tr>
                 <td style="width: 100px">
@@ -96,11 +97,13 @@
         <table style="width: 1000px">
             <tr>
                 <th style="width: 100px; text-align: left">Autor: <span>
-                            <a th:href="@{'/user/user_profile/'+${answer.user_name}}" th:text="${answer.user_name}"/>
+                            <a style="font-weight:normal" th:href="@{'/user/user_profile/'+${answer.user_name}}"
+                               th:text="${answer.user_name}"/>
             </span></th>
             </tr>
             <tr>
-                <th style="text-align: left">Data: <span style="width: 150px" th:text="${answer.date}"></span></th>
+                <th style="text-align: left;">Data: <span style="width: 150px; font-weight:normal;"
+                                                          th:text="${answer.date}"></span></th>
 
             </tr>
             <tr>

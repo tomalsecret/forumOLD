@@ -5,12 +5,12 @@
     <meta charset="UTF-8"/>
     <title>Strona główna forum</title>
 
-
 </head>
 <body>
 <div th:replace="fragments/header :: header"/>
 
-<div class="container-fluid body-content"><br/>
+<div class="container-fluid body-content">
+    <br/>
     <form sec:authorize="isAuthenticated()" th:action="@{/forum/add_pub_msg/}" style="display: inline;" method="GET">
         <input type="submit" value="Dodaj post"/>
     </form>
@@ -29,7 +29,7 @@
         <select name="category" size="1" onchange='this.form.submit()'>
             <option value="">Wybierz kategorie:</option>
             <option value="wszystkie">Wszystkie</option>
-            <option value="Ogolny">Ogolne</option>
+            <option value="Ogolny">Ogólne</option>
             <option value="inny">Inne</option>
 
         </select>
@@ -41,11 +41,11 @@
 
     <div th:each="post : ${posts}">
         <table style="width: 1000px; border-bottom: 0px">
-            <tr>
+            <tr style="font-weight:bold">
                 <td>Autor:</td>
                 <td>Kategoria:</td>
                 <td>Data:</td>
-                <td>Ilosc plusow: <span th:text="${post.ilosc_plusow}"></span></td>
+                <td>Ilosc plusow: <span style="font-weight:normal" th:text="${post.ilosc_plusow}"></span></td>
             </tr>
             <tr>
                 <td style="width: 100px">

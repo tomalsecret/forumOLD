@@ -8,12 +8,12 @@
 <div th:replace="fragments/header :: header"/>
 <div class="container-fluid body-content"><br/>
 
-<h1 style="color:blue"> Witaj! To jest strona admina!</h1>
+    <h1 style="color:blue"> Witaj! To jest strona admina!</h1>
 
-<br/>
+    <br/>
 
-<form th:action="@{/user/admin/disable}" method="GET">
-    <input type="submit" value="Wyłącz użytkownika"/>
+    <form th:action="@{/user/admin/disable}" method="GET">
+        <input type="submit" value="Wyłącz użytkownika"/>
 </form>
 <br/>
 <form th:action="@{/user/admin/enable}" method="GET">
