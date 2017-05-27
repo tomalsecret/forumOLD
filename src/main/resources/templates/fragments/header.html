@@ -112,7 +112,7 @@
          <div class="menu" sec:authorize="isAuthenticated()">
               <form th:action="@{/logout}" style="display: inline;" method="post"><input type="submit" value="Wyloguj"/></form>
          </div>
-         <div class="menu" sec:authorize="isAuthenticated()">
+         <div class="menu" sec:authorize="isAuthenticated()" th:inline="text">
                Zalogowany jako: [[${#httpServletRequest.remoteUser}]]
          </div>
     <br/><br/><br/>
