@@ -6,37 +6,52 @@
 </head>
 <body>
 
+<div th:fragment="header">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"></script>
 
-<div id="head" th:fragment="header">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous"></link>
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          crossorigin="anonymous"></link>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 
     <!-- this is header -->
     <style>
-
         html {
             height: 100%;
-
         }
-
         html body {
             height: 100%;
+            overflow: hidden;
         }
 
-
-
-
+        html body .container-fluid.body-content {
+            position: absolute;
+            top: 30px;
+            bottom: 0px;
+            right: 0;
+            left: 0;
+            border-top: thin double #000000;
+            overflow-y: auto;
+        }
         body {
             background-color: #f8ffa5;
             color: black;
             margin-left: 25px;
             margin-bottom: 25px;
-
-
         }
-
         table {
             border: 1px solid black;
             word-break: break-all;
@@ -46,10 +61,7 @@
             background-color: #e8f1d1;
             border-bottom: 2px solid #000000;
             border-top: 2px solid #000000;
-
-
         }
-
         tr, td, th {
             border: 1px solid black;
             word-break:break-all;
@@ -62,57 +74,37 @@
             border-left: 0px;
             background-color: #fff7c3;
             color: black;
-
-
-
         }
-
-
         td.a {
             text-align: left;
             vertical-align: top;
             padding: 5px;
             position: relative;
         }
-          
-        #head .menu{
-           padding:5px;   
-           float:left;     
-          }
-          
-       #head .menu input {
-         margin-top: -4px;
-       }
-          
-          
-       #head {
-       position: fixed;
-       width: 100%;  
-       }
-          
     </style>
-    
-        <div class="menu" sec:authorize="isAnonymous()">
-            <a href="/user/login" th:href="@{/user/login}">Zaloguj</a>
-      </div>
-        <div class="menu" sec:authorize="isAnonymous()">
-            <a href="/user/register" th:href="@{/user/register}">Zarejestruj</a>
-      </div>
-        <div class="menu"> <a th:href="@{/}">Strona główna</a></div>
-        <div class="menu"><a th:href="@{/user/listall}">Pokaż wszystkich użytkowników</a></div>
+    <tr>
+        <td sec:authorize="isAnonymous()">
+            <a href="/user/login" th:href="@{/user/login}">Zaloguj</a> |
+        </td>
+        <td sec:authorize="isAnonymous()">
+            <a href="/user/register" th:href="@{/user/register}">Zarejestruj</a> |
+        </td>
+        <td><a th:href="@{/}">Strona główna</a> |</td>
+        <td><a th:href="@{/user/listall}">Pokaż wszystkich użytkowników</a> |</td>
 
-        <div class="menu"><a th:href="@{/forum/}">Forum</a></div>
-        <div class="menu" sec:authorize="isAuthenticated()">
-            <a href="/user/my_profile" th:href="@{/user/my_profile}">Mój profil</a>
-        </div>
-        <div class="menu" sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/user/admin}">Admin panel</a></div>
-        <div class="menu" sec:authorize="isAuthenticated()">
+        <td><a th:href="@{/forum/}">Forum</a> |</td>
+        <td sec:authorize="isAuthenticated()">
+            <a href="/user/my_profile" th:href="@{/user/my_profile}">Mój profil</a> |
+        </td>
+        <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/user/admin}">Admin panel</a> |</td>
+        <td sec:authorize="isAuthenticated()">
             <form th:action="@{/logout}" style="display: inline;" method="post"><input type="submit" value="Wyloguj"/></form>
-        </div>
+        </td>
 
-        <div id="user" sec:authorize="isAuthenticated()" th:inline="text" style="top: 5px;right:5px;">Zalogowany jako: [[${#httpServletRequest.remoteUser}]]</div>
+        <span sec:authorize="isAuthenticated()" th:inline="text" style="position:absolute;  top: 5px;right:5px;">Zalogowany jako: [[${#httpServletRequest.remoteUser}]]</span>
 
-      
+
+    </tr>
     <br/><br/><br/>
 </div>
 
