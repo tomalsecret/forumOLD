@@ -3,7 +3,6 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 
-
 </head>
 <body>
 
@@ -12,17 +11,15 @@
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
             integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
             crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
             integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
             crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"></link>
 
-    
+
       <div id="head">
 <div class="menu" sec:authorize="isAnonymous()">
              <a href="/user/login" th:href="@{/user/login}">Zaloguj</a>
@@ -41,7 +38,6 @@
          <div class="menu" sec:authorize="isAuthenticated()">
               <form th:action="@{/logout}" style="display: inline;" method="post"><input type="submit" value="Wyloguj"/></form>
          </div>
-
           <div class="menu" sec:authorize="isAuthenticated()" th:inline="text" style="float:right;">
                Zalogowany jako: [[${#httpServletRequest.remoteUser}]]
          </div>
