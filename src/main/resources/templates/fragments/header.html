@@ -51,6 +51,7 @@
             color: black;
             margin-left: 25px;
             margin-bottom: 25px;
+            margin-right: 25px;
         }
         table {
             border: 1px solid black;
@@ -85,6 +86,7 @@
         #head .menu{
             padding:5px;  
             float:left; 
+            display:inline;
         }
           
         #head .menu input {
@@ -92,7 +94,7 @@
         }
           
     </style>
-      <div class="head">
+      <div id="head">
 <div class="menu" sec:authorize="isAnonymous()">
              <a href="/user/login" th:href="@{/user/login}">Zaloguj</a>
        </div>
