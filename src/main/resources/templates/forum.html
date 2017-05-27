@@ -10,7 +10,7 @@
 <body>
 <div th:replace="fragments/header :: header"/>
 
-<div class="container-fluid body-content"><br/>
+<br/>
 <form sec:authorize="isAuthenticated()" th:action="@{/forum/add_pub_msg/}" style="display: inline;" method="GET">
     <input type="submit" value="Dodaj post"/>
 </form>
@@ -94,6 +94,5 @@
 
 </div>
     <br/>
-</div>
 </body>
 </html>
