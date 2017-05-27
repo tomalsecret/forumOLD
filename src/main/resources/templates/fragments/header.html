@@ -108,7 +108,7 @@
          <div class="menu" sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/user/admin}">Admin panel</a></div>
          <div class="menu" sec:authorize="isAuthenticated()">
               <form th:action="@{/logout}" style="display: inline;" method="post"><input type="submit" value="Wyloguj"/></form>
-         </td>
+        
          </div>
     <br/><br/><br/>
 </div>
